@@ -1,25 +1,26 @@
 import React from 'react'
-import {BrowserRouter as Router, Route} from 'react-router-dom'
+import {BrowserRouter, Routes, Route, Link} from 'react-router-dom'
 
 import Layout from './hocs/Layout'
 import Home from './containers/Home'
 import Login from './containers/Login'
 import Register from './containers/Register'
 import Dashboard from './containers/Dashboards'
-
-
+import {Provider} from 'react-redux'
+import store from './store'
+ 
 function App(){
     return(
-        <Router>
-            salam
+        <Provider store={store}>
             <Layout>
-                <div>Salam</div>
-                {/* <Route exact path='/' component={Home} />
-                <Route exact path='/register' component={Register} />
-                <Route exact path='/login' component={Login} />
-                <Route exact path='/dashboard' component={Dashboard} />           */}
+                <Routes>
+                    <Route  path='/home' element={<Home/>} />
+                    <Route  path='/register' element={<Register/>} />
+                    <Route exact path='/login' element={<Login/>} />
+                    <Route exact path='/dashboard' component={<Dashboard/>} />          
+                </Routes>
             </Layout>
-        </Router>
+        </Provider>
     )
 }
 
